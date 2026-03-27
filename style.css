@@ -1,0 +1,72 @@
+body {
+  font-family: sans-serif;
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 0 15px;
+  /* On utilise la variable ou la couleur par défaut */
+  background-color: var(--bg-color, #f0f2f5); 
+  color: var(--text-color, #333);
+  transition: all 0.3s ease;
+}
+
+header {
+  background: var(--header-bg, #f4f4f4);
+  padding: 20px;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #ccc;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  /* Utilise la variable pour le fond des cartes */
+  background: var(--card-bg, #ffffff); 
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+#input-area {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+textarea {
+  min-height: 80px;
+  padding: 12px;
+  /* Le fond du texte change aussi */
+  background-color: var(--card-bg, #fafafa);
+  color: var(--text-color, #333);
+}
+
+body.dark-mode {
+  --bg-color: #1a1a1a;
+  --text-color: #f4f4f4;
+  --card-bg: #2d2d2d;
+  --header-bg: #252525;
+}
+
+button {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #27ae60;
+  color: white; /* Assure que le texte du bouton reste lisible */
+  border: none;
+}
+
+h1, h2, h3 {
+  /* Le titre doit s'éclaircir en mode sombre */
+  color: var(--title-color, #2c1376);
+  margin-top: 0;
+}
+
+/* On définit une couleur de titre plus claire pour le mode sombre */
+body.dark-mode {
+  --title-color: #a29bfe;
+}
