@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Messagerie Simple</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div id="server-config">
+    <input type="text" id="server-url" placeholder="URL du micro-service" value="https://ton-serveur.onrender.com" />
+    <button id="btn-connect">Connecter</button>
+  </div>
+  <div class="container">
+    <header>
+      <h1>Sujet de la discussion : Les technologies web</h1>
+    </header>
+
+    <ul id="messages-list">
+      <li>Ceci est le premier message de test.</li>
+      <li>Le HTML est la structure du web.</li>
+      <li>Le CSS s'occupe de la mise en forme.</li>
+      <li>Le JavaScript rend les pages interactives.</li>
+      <li>Bientôt, ces messages viendront d'un serveur !</li>
+    </ul>
+
+    <div id="input-area">
+      <input type="text" id="pseudo-input" placeholder="Ton pseudo...">
+      <textarea id="message-input" placeholder="Votre message..." required></textarea>
+      <button id="send-btn">Envoyer</button>
+      <button id="update-btn">Mettre à jour</button>
+      <button id="theme-btn">Changer le thème</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
