@@ -16,7 +16,7 @@ function applique(f, tab) {
 }
 
 // ── URL du micro-service ─────────────────────────────────
-var serverURL = "https://message-app-c86q.onrender.com";
+var serverURL = "https://message-app-1-jbnw.onrender.com";
 
 let msgs = [
     { pseudo: "Admin", msg: "Bienvenue sur le chat !", date: new Date().toLocaleString() },
