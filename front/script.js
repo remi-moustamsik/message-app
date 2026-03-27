@@ -1,3 +1,5 @@
+var serverURL = "https://message-app-1-jbnw.onrender.com";
+
 function fact(n) {
     if (n < 0) return "Erreur : n doit être positif";
     let resultat = 1;
@@ -14,9 +16,6 @@ function applique(f, tab) {
     }
     return resultat;
 }
-
-// ── URL du micro-service ─────────────────────────────────
-var serverURL = "https://message-app-1-jbnw.onrender.com";
 
 let msgs = [
     { pseudo: "Admin", msg: "Bienvenue sur le chat !", date: new Date().toLocaleString() },
@@ -37,21 +36,17 @@ function update(tableauMessages) {
     });
 }
 
-// ── Charge les messages depuis le micro-service ──────────
+// ── Charge les messages depuis le serveur ────────────────────────
 function chargerMessages() {
     fetch(serverURL + '/msg/getAll')
         .then(function(response) {
             return response.json();
         })
         .then(function(messages) {
-            // On convertit le format du serveur vers le format local {pseudo, msg, date}
             msgs = messages.map(function(m) {
-                // Si le message a été posté avec le format "[pseudo] msg | date"
-                // on essaie de le parser, sinon on met des valeurs par défaut
                 try {
-                    var parsed = JSON.parse(m);
-                    return parsed;
-                } catch (e) {
+                    return JSON.parse(m);
+                } catch(e) {
                     return { pseudo: "?", msg: m, date: "" };
                 }
             });
@@ -67,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const messagesList = document.getElementById('messages-list');
     const pseudoInput = document.getElementById('pseudo-input');
 
-    // ── Chargement initial depuis le serveur ─────────────
+    // Chargement initial depuis le serveur
     chargerMessages();
 
     sendBtn.addEventListener('click', () => {
@@ -79,10 +74,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 msg: text,
                 date: new Date().toLocaleString()
             };
-            msgs.push(newMsg);
-            messageInput.value = '';
 
-            // ── Envoi au micro-service ───────────────────
+            // ── Envoi au serveur ─────────────────────────────────
             var texteServeur = encodeURIComponent(JSON.stringify(newMsg));
             fetch(serverURL + '/msg/post/' + texteServeur)
                 .then(function(response) { return response.json(); })
@@ -92,22 +85,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
 
-            update(msgs);
+            messageInput.value = '';
         }
     });
 
-    // Bouton Mise à jour
     updateBtn.addEventListener('click', () => {
         chargerMessages();
     });
 
-    // Changement de thème
     themeBtn.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
     });
 });
 
-// ── Bouton "Connecter" pour changer d'URL ──────────
+// ── Bouton Connecter (modularité 3.4) ────────────────────────────
 var btnConnect = document.getElementById('btn-connect');
 if (btnConnect) {
     btnConnect.addEventListener('click', function() {
